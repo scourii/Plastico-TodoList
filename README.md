@@ -8,11 +8,12 @@ Simple Console Todo list that utilizes SQLite.
 
 # Technologies
 Project is created with:
-* [SQLite Package 1.0.113.7](https://www.nuget.org/packages/DecimalMath.DecimalEx/)
+* [CommandLineParser 2.9.0](https://www.nuget.org/packages/CommandLineParser/2.9.0-preview1)
+* [SQLite Package 1.0.113.7](https://www.nuget.org/packages/System.Data.SQLite/)
 * [C# Dotnet 5.0103](https://dotnet.microsoft.com/)
 
 ## Setup
-Install the [Dotnet 5.0103](https://dotnet.microsoft.com/) framework for C# and download the DecimalEX nuget package.
+Install the [Dotnet 5.0103](https://dotnet.microsoft.com/) framework for C# and download the [SQLite 1.0](https://www.nuget.org/packages/System.Data.SQLite/)  and [CommandLineParser 2.9.0](https://www.nuget.org/packages/CommandLineParser/2.9.0-preview1) nuget package.
 ```
 $ gitclone https://github.com/SugarBlank/Plastico-TodoList/
 $ cd ../Plastico-TodoList
