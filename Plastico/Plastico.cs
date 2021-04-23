@@ -1,5 +1,8 @@
 using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+
 
 namespace Plastico
 {
@@ -15,6 +18,8 @@ namespace Plastico
         "[4] Exit",
         };
         
+        
+        
         public void MenuAction()
         {
             for (int i = 0; i < Menu.Count; i++)
@@ -26,14 +31,13 @@ namespace Plastico
             MainMenu((Operations)EnumChoice);
             
         }
-        
         private void MainMenu(Operations Choice)
         {
             
             switch(Choice)
             {
                 case Operations.AddItems:
-                    Console.WriteLine("\nAdd the new item in the format: '1_Details_yyyy-MM-dd_HH:mm'");
+                    Console.WriteLine("\nAdd a new item to the list:");
                     string NewItem = Console.ReadLine();
                     DB.AddToDataBase(NewItem);
                     Console.WriteLine($"Added new items to the list.");
