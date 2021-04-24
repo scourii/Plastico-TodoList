@@ -1,7 +1,8 @@
 using System;
 using System.IO;
 using CommandLine;
-using System.Collections.Generic;
+using System.Reflection;
+
 
 namespace Plastico
 {
@@ -15,25 +16,30 @@ namespace Plastico
         
         [Verb("remove", HelpText = "Remove item from the TodoList.")]
         class RemoveOptions : ICommand{
-            [Option('o', "object", Required = true, HelpText = "Item to add to list.")]
+            [Option('i', "item", Required = true, HelpText = "Item to remove from Plastico.")]
             public int Object { get; set; }
             public void Execute()
             {
                 Database DB = new Database();
                 DB.RemoveItem(Object);
-                Console.WriteLine($"Removed {Object} from the list.");
             }
         }
 
         [Verb("add", HelpText = "Add new item to Plastico.")]
         class AddOptions : ICommand{
-            [Option('o', "object", Required = true, HelpText = "Item to add to list.")]
-            public string Object { get; set; }
+            [Option('i', "item", Required = true, HelpText = "Item to add to list.")]
+            public string Item { get; set; }
+            [Option('d', "date", Required = false, HelpText = "Date to add to list.")]
+            public DateTime Date { get; set; }
+            
             public void Execute()
             {
+                if (Date == default(DateTime))
+                {
+                    Date = DateTime.Today;
+                }
                 Database DB = new Database();
-                DB.AddToDataBase(Object);
-                Console.WriteLine($"Added {Object} to the todolist.");
+                DB.AddToDataBase(Item, Date);
             }
         }
         [Verb("menu", isDefault: true, HelpText = "Shows the Main Menu for Plastico.")]
@@ -65,6 +71,12 @@ namespace Plastico
             }
             else
             {
+                Assembly assembly = Assembly.LoadFrom("NotifManager.dll");
+                object mc = assembly.CreateInstance("Plastico.NotifySend");
+                Type t = mc.GetType();
+                BindingFlags bf = BindingFlags.Instance | BindingFlags.NonPublic;
+                MethodInfo mi = t.GetMethod("SendNotification", bf);
+                mi.Invoke(mc, null);
                 Database DB = new Database();
                 Parser.Default.ParseArguments<Menu, RemoveOptions, AddOptions, Print>(args).WithParsed<ICommand>(t => t.Execute());
             }
