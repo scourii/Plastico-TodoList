@@ -1,6 +1,7 @@
 using System;
 using System.Data.SQLite;
 
+
 namespace Plastico
 {
     public class Database
@@ -8,15 +9,13 @@ namespace Plastico
     private string FileLocation = @"URI=file:TodoList.db";
         public void CreateDataBase()
         {
-        
-        
-        using var Connections = new SQLiteConnection(FileLocation);
-        Connections.Open();
-        using var Command = new SQLiteCommand(Connections);
-        Command.CommandText = @"DROP TABLE IF EXISTS TodoList";
-        Command.ExecuteNonQuery();
-        Command.CommandText = @"CREATE TABLE TodoList(Item_Details TEXT, Item_Date TEXT, Item_Time TEXT)";
-        Command.ExecuteNonQuery();
+            using var Connections = new SQLiteConnection(FileLocation);
+            Connections.Open();
+            using var Command = new SQLiteCommand(Connections);
+            Command.CommandText = @"DROP TABLE IF EXISTS TodoList";
+            Command.ExecuteNonQuery();
+            Command.CommandText = @"CREATE TABLE TodoList(Item_Details TEXT, Item_Date TEXT)";
+            Command.ExecuteNonQuery();
         }
         public static void ReadDataBase()
         {
@@ -27,27 +26,23 @@ namespace Plastico
             using var CommandText = new SQLiteCommand(SelectedItems, Connections);
             using SQLiteDataReader ReadDataBaseInfo = CommandText.ExecuteReader();
             Console.WriteLine("\nYour TodoList:");
-            long rowid = Connections.LastInsertRowId;
-            Console.WriteLine(rowid);
             while (ReadDataBaseInfo.Read())
             {
 
-                Console.WriteLine($"[{ReadDataBaseInfo.GetInt32(0)}] {ReadDataBaseInfo.GetString(1)} {ReadDataBaseInfo.GetString(2)} {ReadDataBaseInfo.GetString(3)}");
+                Console.WriteLine($"[{ReadDataBaseInfo.GetInt32(0)}] {ReadDataBaseInfo.GetString(1)} {ReadDataBaseInfo.GetString(2)}");
             }
 
         }
-        public void AddToDataBase(string NewItem)
+        public void AddToDataBase(string NewItem, DateTime Date)
         {
-            String[] SplitItems = NewItem.Split('_');
             using var Connections = new SQLiteConnection(FileLocation);
             Connections.Open();
-            var SQL = "INSERT INTO TodoList(Item_Details, Item_Date, Item_Time) VALUES(@Item_Details, @Item_Date, @Item_Time)";
+            var SQL = "INSERT INTO TodoList(Item_Details, Item_Date) VALUES(@Item_Details, @Item_Date)";
             using var InsertSQL = new SQLiteCommand(SQL, Connections);
-            
             try
             {
-                InsertSQL.Parameters.AddWithValue("@Item_Details", SplitItems[0]);
-                InsertSQL.Parameters.AddWithValue("@Item_Date", SplitItems[1]);
+                InsertSQL.Parameters.AddWithValue("@Item_Details", NewItem);
+                InsertSQL.Parameters.AddWithValue("@Item_Date", Date.ToShortDateString());
                 InsertSQL.ExecuteNonQuery();
             }
             catch (IndexOutOfRangeException e)
@@ -72,6 +67,9 @@ namespace Plastico
             using var RemoveSQL = new SQLiteCommand(SQL, Connections);
             RemoveSQL.Parameters.AddWithValue("@Item_Number", RemoveItemNumber);
             RemoveSQL.ExecuteNonQuery();
+            var Clean = "VACUUM";
+            using var CleanSQL = new SQLiteCommand(Clean, Connections);
+            CleanSQL.ExecuteNonQuery();
             Console.WriteLine($"Removed {RemoveItemNumber} from the list.");
         }
 }
