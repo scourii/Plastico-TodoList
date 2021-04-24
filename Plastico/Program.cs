@@ -71,12 +71,6 @@ namespace Plastico
             }
             else
             {
-                Assembly assembly = Assembly.LoadFrom("NotifManager.dll");
-                object mc = assembly.CreateInstance("Plastico.NotifySend");
-                Type t = mc.GetType();
-                BindingFlags bf = BindingFlags.Instance | BindingFlags.NonPublic;
-                MethodInfo mi = t.GetMethod("SendNotification", bf);
-                mi.Invoke(mc, null);
                 Database DB = new Database();
                 Parser.Default.ParseArguments<Menu, RemoveOptions, AddOptions, Print>(args).WithParsed<ICommand>(t => t.Execute());
             }
