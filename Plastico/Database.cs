@@ -25,7 +25,7 @@ namespace Plastico
             string SelectedItems = "SELECT rowid, * FROM TodoList ORDER BY ROWID ASC LIMIT 10";
             using var CommandText = new SQLiteCommand(SelectedItems, Connections);
             using SQLiteDataReader ReadDataBaseInfo = CommandText.ExecuteReader();
-            Console.WriteLine("\nYour TodoList:");
+            Console.WriteLine("Your TodoList:");
             while (ReadDataBaseInfo.Read())
             {
 
@@ -55,6 +55,7 @@ namespace Plastico
             }
             finally
             {
+                Console.WriteLine($"Added new items to the list.");
                 Connections.Close();
             }
         }
@@ -70,7 +71,7 @@ namespace Plastico
             var Clean = "VACUUM";
             using var CleanSQL = new SQLiteCommand(Clean, Connections);
             CleanSQL.ExecuteNonQuery();
-            Console.WriteLine($"Removed {RemoveItemNumber} from the list.");
+            Console.WriteLine($"Removed Item {RemoveItemNumber} from the list.");
         }
 }
 }
