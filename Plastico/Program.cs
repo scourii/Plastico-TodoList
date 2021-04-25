@@ -9,7 +9,6 @@ namespace Plastico
         public interface ICommand
         {
             void Execute();
-            
         }
         
         [Verb("remove", HelpText = "Remove item from the TodoList.")]
