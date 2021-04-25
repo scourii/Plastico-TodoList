@@ -8,7 +8,7 @@ namespace Plastico
         public static void Check()
         {
             var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromSeconds(5);
+            var periodTimeSpan = TimeSpan.FromMinutes(30);
             var timer = new Timer((e) =>
             {
                 CheckForItems.DateChecker();   
