@@ -23,7 +23,6 @@ namespace Plastico
             int EnumChoice;
             EnumChoice = Int32.Parse(Console.ReadLine());
             MainMenu((Operations)EnumChoice);
-            
         }
         private void MainMenu(Operations Choice)
         { 
@@ -40,6 +39,7 @@ namespace Plastico
                     Console.Clear();
                     GC.Collect();
                     break;
+
                 case Operations.RemoveItems:
                     Console.WriteLine("\nInsert the number of the item you wish to remove:");
                     int ItemToRemove = Int32.Parse(Console.ReadLine());
@@ -48,12 +48,14 @@ namespace Plastico
                     Console.Clear();
                     GC.Collect();
                     break;
+
                 case Operations.PrintItems:
                     Database.ReadDataBase();
                     Console.ReadKey();
                     Console.Clear();
                     GC.Collect();
                     break;
+
                 case Operations.Exit:
                     Environment.Exit(0);
                     break;
