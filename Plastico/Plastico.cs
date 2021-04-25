@@ -5,7 +5,6 @@ namespace Plastico
 {
     class PlasticoTodoApp
     {   
-        Database DB = new Database();
         private List<string> Menu = new List<string>(){
         "        Plastico",
         "------------------------",
@@ -28,6 +27,7 @@ namespace Plastico
         }
         private void MainMenu(Operations Choice)
         { 
+            Database DB = new Database();
             switch(Choice)
             {
                 case Operations.AddItems:
@@ -36,9 +36,9 @@ namespace Plastico
                     Console.WriteLine("\nEnter the date.");
                     DateTime Date = DateTime.Parse(Console.ReadLine());
                     DB.AddToDataBase(NewItem, Date);
-                    Console.WriteLine($"Added new items to the list.");
                     Console.ReadKey();
                     Console.Clear();
+                    GC.Collect();
                     break;
                 case Operations.RemoveItems:
                     Console.WriteLine("\nInsert the number of the item you wish to remove:");
@@ -46,11 +46,13 @@ namespace Plastico
                     DB.RemoveItem(ItemToRemove);
                     Console.ReadKey();
                     Console.Clear();
+                    GC.Collect();
                     break;
                 case Operations.PrintItems:
                     Database.ReadDataBase();
                     Console.ReadKey();
                     Console.Clear();
+                    GC.Collect();
                     break;
                 case Operations.Exit:
                     Environment.Exit(0);
