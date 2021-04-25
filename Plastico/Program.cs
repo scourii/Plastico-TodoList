@@ -1,17 +1,15 @@
 using System;
 using System.IO;
 using CommandLine;
-using System.Reflection;
-
 
 namespace Plastico
 {
-
     class Program
     {
         public interface ICommand
         {
             void Execute();
+            
         }
         
         [Verb("remove", HelpText = "Remove item from the TodoList.")]
@@ -29,7 +27,7 @@ namespace Plastico
         class AddOptions : ICommand{
             [Option('i', "item", Required = true, HelpText = "Item to add to list.")]
             public string Item { get; set; }
-            [Option('d', "date", Required = false, HelpText = "Date to add to list.")]
+            [Option('d', "date", Required = false, HelpText = "Item to add to list.")]
             public DateTime Date { get; set; }
             
             public void Execute()
@@ -42,6 +40,7 @@ namespace Plastico
                 DB.AddToDataBase(Item, Date);
             }
         }
+
         [Verb("menu", isDefault: true, HelpText = "Shows the Main Menu for Plastico.")]
         class Menu : ICommand{
             public void Execute()
@@ -71,9 +70,10 @@ namespace Plastico
             }
             else
             {
+                TimeChecker.Check();
                 Database DB = new Database();
                 Parser.Default.ParseArguments<Menu, RemoveOptions, AddOptions, Print>(args).WithParsed<ICommand>(t => t.Execute());
             }
         }
-    }        
+    }
 }
