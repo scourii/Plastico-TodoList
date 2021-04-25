@@ -16,9 +16,22 @@ namespace Plastico
             using var CommandText = new SQLiteCommand(SelectedItems, Connections);
             using SQLiteDataReader ReadDataBaseInfo = CommandText.ExecuteReader();
             ReadDataBaseInfo.Read();
-            if (ReadDataBaseInfo.GetString(0) == Date)
+            
+            try
             {
-                Task.Run(() => NotificationManager.SendNotif());
+                if (ReadDataBaseInfo.GetString(0) == Date)
+                {
+                    Task.Run(() => NotificationManager.SendNotif());
+                }
+            }
+
+            catch (InvalidOperationException) // For if the user doesn't have anything in the database, just ignores the error and program runs.
+            {
+            }
+
+            finally
+            {
+                Connections.Close();
             }
         }
     }
