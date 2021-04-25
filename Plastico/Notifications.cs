@@ -2,6 +2,7 @@ using DesktopNotifications.FreeDesktop;
 using DesktopNotifications;
 using System.Threading.Tasks;
 
+
 namespace Plastico
 {
     public class NotificationManager
@@ -24,9 +25,8 @@ namespace Plastico
             };
 
             await manager.ShowNotification(notification);
-
-            await Task.Delay(5);
+            
+            await Task.Delay(10);
         }
-
     }
 }
