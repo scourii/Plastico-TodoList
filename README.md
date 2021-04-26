@@ -22,9 +22,8 @@ $ dotnet add package CommandLineParser --version 2.9.0-preview1
 $ dotnet add package System.Data.SQLite.Core --version 1.0.113.7
 $ dotnet add package DesktopNotifications.FreeDesktop --version 1.0.0
 $ sudo dotnet publish -r linux-x64 -o /usr/local/bin/ /p:PublishTrimmed=true /p:PublishSingleFile=true
-Publish trimmed is for the file to remove uneeded dependencies since dotnet uses a lot of dependencies, and single file is for the app to be compiled as a single file than multiple dlls.
 ```
-
+Publish trimmed is for the file to remove uneeded dependencies since dotnet uses a lot of dependencies, and single file is for the app to be compiled as a single file than multiple dlls.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
