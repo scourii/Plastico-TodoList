@@ -12,7 +12,8 @@ Project is created with:
 ## Setup
 Install the [Dotnet 5.0103](https://dotnet.microsoft.com/) framework for C# and download the [SQLite 1.0](https://www.nuget.org/packages/System.Data.SQLite/)  and [CommandLineParser 2.9.0](https://www.nuget.org/packages/CommandLineParser/2.9.0-preview1) nuget package.
 ```
-$ gitclone https://github.com/SugarBlank/Plastico-TodoList/
+$ sudo dnf install dotnet-runtime-5.0
+$ git clone https://github.com/SugarBlank/Plastico-TodoList/
 $ cd ../Plastico-TodoList
 $ dotnet add package CommandLineParser --version 2.9.0-preview1
 $ dotnet add package System.Data.SQLite.Core --version 1.0.113.7
