@@ -1,10 +1,6 @@
 # Plastico-TodoList
 Simple Console Todo list that utilizes SQLite.
-
-# Screenshots
-![image](https://user-images.githubusercontent.com/64178604/112048481-d72bfd80-8b24-11eb-8b79-c39b34e4a328.png)
-![image](https://user-images.githubusercontent.com/64178604/112049182-aa2c1a80-8b25-11eb-9e2f-b47241265cde.png)
-![image](https://user-images.githubusercontent.com/64178604/112049249-bf08ae00-8b25-11eb-89d3-02de41ae54f3.png)
+![plastico](https://user-images.githubusercontent.com/64178604/116018944-1ca28580-a611-11eb-8aa3-5b21bad6b724.gif)
 
 # Technologies
 Project is created with:
