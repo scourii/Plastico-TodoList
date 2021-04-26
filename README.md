@@ -1,5 +1,5 @@
 # Plastico-TodoList
-Simple Console Todo list that utilizes SQLite.
+CLI Todo List with support for notifications.
 ![plastico](https://user-images.githubusercontent.com/64178604/116018944-1ca28580-a611-11eb-8aa3-5b21bad6b724.gif)
 
 # Technologies
