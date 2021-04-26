@@ -10,6 +10,7 @@ Simple Console Todo list that utilizes SQLite.
 Project is created with:
 * [CommandLineParser 2.9.0](https://www.nuget.org/packages/CommandLineParser/2.9.0-preview1)
 * [SQLite Package 1.0.113.7](https://www.nuget.org/packages/System.Data.SQLite/)
+* [DesktopNotifications.FreeDesktop](https://www.nuget.org/packages/DesktopNotifications.FreeDesktop/)
 * [C# Dotnet 5.0103](https://dotnet.microsoft.com/)
 
 ## Setup
@@ -17,8 +18,11 @@ Install the [Dotnet 5.0103](https://dotnet.microsoft.com/) framework for C# and 
 ```
 $ gitclone https://github.com/SugarBlank/Plastico-TodoList/
 $ cd ../Plastico-TodoList
+$ dotnet add package CommandLineParser --version 2.9.0-preview1
 $ dotnet add package System.Data.SQLite.Core --version 1.0.113.7
-$ dotnet run
+$ dotnet add package DesktopNotifications.FreeDesktop --version 1.0.0
+$ sudo dotnet publish -r linux-x64 -o /usr/local/bin/ /p:PublishTrimmed=true /p:PublishSingleFile=true
+Publish trimmed is for the file to remove uneeded dependencies since dotnet uses a lot of dependencies, and single file is for the app to be compiled as a single file than multiple dlls.
 ```
 
 ## License
