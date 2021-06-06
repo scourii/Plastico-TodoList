@@ -21,7 +21,7 @@ $ dotnet add package DesktopNotifications.FreeDesktop --version 1.0.0
 $ dotnet add package DesktopNotifications.Windows --version 1.0.0
 $ sudo dotnet publish -r linux-x64 -o /usr/local/bin/ /p:PublishTrimmed=true /p:PublishSingleFile=true
 ```
-Publish trimmed is for the file to remove uneeded dependencies since dotnet uses a lot of dependencies, and single file is for the app to be compiled as a single file than multiple dlls.
+Publish trimmed is for the file to remove uneeded dependencies since dotnet uses a lot of dependencies, and single file is for the app to be compiled as a single file than multiple dlls. **ANY dotnet version above 5.0103 will not build, due to the Windows RT being removed from dotnet in newer versions.**
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
